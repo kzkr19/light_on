@@ -1,6 +1,9 @@
 # ligt_on
-照明をマストドンから操作するためのスクリプト
+照明をマストドンから操作するためのスクリプト．  
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=MZZINun98JE" target="_blank">
+<img src="http://img.youtube.com/vi/MZZINun98JE/0.jpg" width="240" height="180" border="10" />
+</a>
 
 ## 概要
 Raspberry Pi ZeroからArduinoを通して照明を制御できるようにする．
