@@ -101,4 +101,5 @@ cmd
                     (map (fn (x) (mod n x)) (range 2 n))
                     0)))))
     (def light (is-prime (get-min))))
+
 ```
