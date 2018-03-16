@@ -4,7 +4,7 @@
 
 ## 概要
 Raspberry Pi ZeroからArduinoを通して照明を制御できるようにする．
-マストドンに "cmd\n" から始まる文字列がとぅーとされた場合，残りの文字をLispとして処理させ照明のON/OFFが制御できる．
+マストドンに "cmd\n" から始まる文字列がトゥートされた場合，残りの文字をLispとして処理させ照明のON/OFFが制御できる．
 
 ## Arduinoのセットアップ
 
@@ -24,9 +24,9 @@ RS304MDを用いる．
 
 ### 参考リンク
 
-[RS303MR/RS304MD 取扱説明書](http://www.futaba.co.jp/img/uploads/files/robot/download/RS303MR_RS304MD_115.pdf)
-[Arduinoでロボゼロのサーボを動かしてみよう！（10） : ROBOMIC（ブログ）](http://micono.cocolog-nifty.com/blog/2011/04/arduino10-5e6a.html)
-[Arduinoでロボゼロのサーボを動かしてみよう！（11）: ROBOMIC（ブログ）](http://micono.cocolog-nifty.com/blog/2011/04/arduino11-17d5.html)
+[RS303MR/RS304MD 取扱説明書](http://www.futaba.co.jp/img/uploads/files/robot/download/RS303MR_RS304MD_115.pdf)  
+[Arduinoでロボゼロのサーボを動かしてみよう！（10） : ROBOMIC（ブログ）](http://micono.cocolog-nifty.com/blog/2011/04/arduino10-5e6a.html)  
+[Arduinoでロボゼロのサーボを動かしてみよう！（11）: ROBOMIC（ブログ）](http://micono.cocolog-nifty.com/blog/2011/04/arduino11-17d5.html)  
 
 ## Raspberry Piのセットアップ
 
@@ -52,7 +52,7 @@ select_port関数ではポートの先頭の物をArduinoだと決め打ちし�
 
 
 ### 常駐化
-crontabで自動起動するようにした．
+crontabで自動起動するようにした．  
 参考：[Raspberry Piでプログラムを自動起動する5種類の方法を比較・解説](http://hendigi.karaage.xyz/2016/11/auto-boot/)．
 
 
@@ -61,8 +61,44 @@ crontabで自動起動するようにした．
 
 [Raspberry Pi からクラウドへ (Python) - Raspberry Pi の Azure IoT Hub への接続 | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/iot-hub/iot-hub-raspberry-pi-kit-python-get-started)
 
-Raspberry Pi ZeroのようにRAMが1GB以下の場合は以下のサイトにあるようにswap領域を広げておかないとビルドが通らない．
+Raspberry Pi ZeroのようにRAMが1GB以下の場合は以下のサイトにあるようにswap領域を広げておかないとビルドが通らない．  
 [Raspberry PiとMicrosoft Azureを連携してIoTを活用しよう (1/3)：CodeZine（コードジン）](https://codezine.jp/article/detail/10595)
 
-あとは接続文字列を一重引用符で囲むことに注意すれば躓かないと思う(逆にこの2つで躓いた)．
+あとは接続文字列を一重引用符で囲むことに注意すれば躓かないと思う．
+僕はその後どうにも調理できなかったのでこれ以上かけない．
 
+## つかいかた
+### 照明のON/OFF
+照明をつけるコード．
+```Clojure
+cmd
+(def light True)
+```
+
+照明をけすコード．
+```Clojure
+cmd
+(def light False)
+```
+
+照明がついていたら消す，消えていたらつけるコード．
+```Clojure
+cmd
+(def light (not light))
+```
+
+### 関数定義とかもろもろ
+時間のうち"分"が素数の場合に照明をつけるコード．
+
+````Clojure
+cmd
+(do
+    (def is-prime (fn (n)
+        (if (<= n 1)
+             False
+            (not
+                (contains? 
+                    (map (fn (x) (mod n x)) (range 2 n))
+                    0)))))
+    (def light (is-prime (get-min))))
+```
