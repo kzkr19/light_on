@@ -105,9 +105,9 @@ cmd
 
 ## その他
 
-Lisp処理系で参考にしたもの．  
-[（Pythonによる簡単なLispインタープリタ実装方法（四則演算編）） - Python, web, Algorithm 技術的なメモ](http://samurait.hatenablog.com/entry/lisp_interpreter_implementation_in_python)  
-[(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)  
+Lisp処理系で参考にしたもの．   
+[（Pythonによる簡単なLispインタープリタ実装方法（四則演算編）） - Python, web, Algorithm 技術的なメモ](http://samurait.hatenablog.com/entry/lisp_interpreter_implementation_in_python)    
+[(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)    
 
 Mastodon.py公式ドキュメント．  
 [Mastodon.py — Mastodon.py 1.2.2 documentation](http://mastodonpy.readthedocs.io/en/stable/)
